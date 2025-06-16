@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resource Hub</title>
+    <link rel="shortcut icon"
+        href="https://th.bing.com/th/id/OIP.bjBcLhxza4HqJ2Ye8C27_QHaHa?w=188&h=188&c=7&r=0&o=5&pid=1.7"
+        type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
+    <style>
+        :root {
+            --primary-color: #001885;
+            --success-color: #92ff04;
+            --secondary-color: #f8f9fc;
+            --accent-color: #2e59d9;
+            --text-color: #5a5c69;
+            --hover-color: #e9ecef;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            background-color: #eee;
+        }
+
+        .nav {
+            background-color: var(--primary-color);
+            height: 100vh;
+            overflow-y: scroll;
+            background-image: url('https://www.transparenttextures.com/patterns/axiom-pattern.png');
+            background-attachment: fixed;
+        }
+
+        .nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-pills .nav-link {
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            border-radius: 5px !important;
+            transition: all 0.3s ease;
+            text-align: left;
+            padding: 10px;
+            padding: 18px 10px;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: var(--success-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .nav-pills .nav-link:hover:not(.active) {
+            background-color: var(--hover-color);
+        }
+
+        .tab-content {
+            padding: 20px;
+            background-color: #f5f5f5;
+            min-height: 100%;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+
+        .resource-card {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            border-left: 4px solid var(--success-color);
+            height: 150px;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        a:hover .resource-card,
+        a:focus .resource-card {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .resource-logo {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            margin-right: 15px;
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+
+        .resource-content {
+            flex: 1;
+        }
+
+        .resource-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .resource-link {
+            color: var(--text-color);
+            font-size: 14px;
+            word-break: break-all;
+        }
+
+        .resource-description {
+            color: #6c757d;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .category-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            background-color: rgb(255, 255, 255);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background-color: var(--primary-color);
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+
+
+        @media (max-width: 768px) {
+
+            .col-3,
+            .col-9 {
+                width: 100%;
+            }
+
+            .nav-pills {
+                flex-direction: row !important;
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 10px;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-link {
+                display: inline-block;
+                margin-right: 5px;
+                width: 98%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 p-0 m-0">
+                <!-- Tab navs -->
+                <div class="nav flex-column nav-pills p-2 p-lg-5" id="v-pills-tab" role="tablist"
+                    aria-orientation="vertical">
+                    <div class="nav-links">
+                        <a class="nav-link active" id="v-pills-link1-tab" data-mdb-toggle="pill" href="#v-pills-link1"
+                            role="tab" aria-controls="v-pills-link1" aria-selected="true">
+                            <i class="fab fa-bootstrap me-2"></i> Bootstrap
+                        </a>
+                        <a class="nav-link" id="v-pills-link2-tab" data-mdb-toggle="pill" href="#v-pills-link2"
+                            role="tab" aria-controls="v-pills-link2" aria-selected="false">
+                            <i class="fas fa-tachometer-alt me-2"></i> Dashboards
+                        </a>
+                        <a class="nav-link" id="v-pills-link3-tab" data-mdb-toggle="pill" href="#v-pills-link3"
+                            role="tab" aria-controls="v-pills-link3" aria-selected="false">
+                            <i class="fas fa-globe me-2"></i> Websites
+                        </a>
+                        <a class="nav-link" id="v-pills-link4-tab" data-mdb-toggle="pill" href="#v-pills-link4"
+                            role="tab" aria-controls="v-pills-link4" aria-selected="false">
+                            <i class="fas fa-palette me-2"></i> UI/UX
+                        </a>
+                        <a class="nav-link" id="v-pills-link5-tab" data-mdb-toggle="pill" href="#v-pills-link5"
+                            role="tab" aria-controls="v-pills-link5" aria-selected="false">
+                            <i class="fas fa-project-diagram me-2"></i> Projects
+                        </a>
+                        <a class="nav-link" id="v-pills-link6-tab" data-mdb-toggle="pill" href="#v-pills-link6"
+                            role="tab" aria-controls="v-pills-link6" aria-selected="false">
+                            <i class="fas fa-graduation-cap me-2"></i> Graduation
+                        </a>
+                        <a class="nav-link" id="v-pills-link7-tab" data-mdb-toggle="pill" href="#v-pills-link7"
+                            role="tab" aria-controls="v-pills-link7" aria-selected="false">
+                            <i class="fas fa-tools me-2"></i> Tools & Websites
+                        </a>
+                        <a class="nav-link" id="v-pills-link9-tab" data-mdb-toggle="pill" href="#v-pills-link9"
+                            role="tab" aria-controls="v-pills-link9" aria-selected="false">
+                            <i class="fas fa-shield-alt me-2"></i> Cyber Security
+                        </a>
+                        <a class="nav-link" id="v-pills-link10-tab" data-mdb-toggle="pill" href="#v-pills-link10"
+                            role="tab" aria-controls="v-pills-link10" aria-selected="false">
+                            <i class="fab fa-laravel me-2"></i> Laravel
+                        </a>
+                        <a class="nav-link" id="v-pills-link11-tab" data-mdb-toggle="pill" href="#v-pills-link11"
+                            role="tab" aria-controls="v-pills-link11" aria-selected="false">
+                            <i class="fas fa-server me-2"></i> DevOps
+                        </a>
+                        <a class="nav-link" id="v-pills-link12-tab" data-mdb-toggle="pill" href="#v-pills-link12"
+                            role="tab" aria-controls="v-pills-link12" aria-selected="false">
+                            <i class="fas fa-user-tie me-2"></i> Freelance
+                        </a>
+                        <a class="nav-link" id="v-pills-link13-tab" data-mdb-toggle="pill" href="#v-pills-link13"
+                            role="tab" aria-controls="v-pills-link13" aria-selected="false">
+                            <i class="fas fa-search me-2"></i> SEO
+                        </a>
+                    </div>
+                </div>
+                <!-- Tab navs -->
+            </div>
+
+            <div class="col-lg-9 col-md-9 p-0 m-0">
+                <!-- Tab content -->
+                <div class="tab-content p-2 p-lg-5" id="v-pills-tabContent">
+                    <!-- Bootstrap Tab -->
+                    <div class="tab-pane fade show active" id="v-pills-link1" role="tabpanel"
+                        aria-labelledby="v-pills-link1-tab">
+                        <h4 class="category-title"><i class="fab fa-bootstrap me-2"></i> Bootstrap Resources</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://mdbootstrap.com/docs/standard/extended/" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-bootstrap"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">MDB Components</div>
+                                            <div class="resource-link">mdbootstrap.com</div>
+                                            <div class="resource-description">Extended Bootstrap components with
+                                                Material Design</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/"
+                                    target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-bootstrap"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Bootstrap 5 Docs</div>
+                                            <div class="resource-link">getbootstrap.com</div>
+                                            <div class="resource-description">Official Bootstrap 5 documentation</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://mdbootstrap.com/docs/standard/" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-bootstrap"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Bootstrap Sections</div>
+                                            <div class="resource-link">mdbootstrap.com</div>
+                                            <div class="resource-description">Ready-to-use Bootstrap sections</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://fontawesome.com/icons" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-icons"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Font Awesome</div>
+                                            <div class="resource-link">fontawesome.com</div>
+                                            <div class="resource-description">Icon library and toolkit</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-wind"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Tailwind CSS</div>
+                                            <div class="resource-link">tailwindcss.com</div>
+                                            <div class="resource-description">Utility-first CSS framework</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://tailwindflex.com/@rp-ketan/basic-resume-template" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-wind"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Tailwind Components</div>
+                                            <div class="resource-link">tailwindflex.com</div>
+                                            <div class="resource-description">Tailwind CSS component examples</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://tw-elements.com/docs/standard/getting-started/quick-start/"
+                                    target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-cubes"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Tailwind MDB</div>
+                                            <div class="resource-link">tw-elements.com</div>
+                                            <div class="resource-description">Tailwind components with MDB</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-font"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Google Fonts</div>
+                                            <div class="resource-link">fonts.google.com</div>
+                                            <div class="resource-description">Free licensed font families</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dashboards Tab -->
+                    <div class="tab-pane fade" id="v-pills-link2" role="tabpanel" aria-labelledby="v-pills-link2-tab">
+                        <h4 class="category-title"><i class="fas fa-tachometer-alt me-2"></i> Dashboard Templates</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.creative-tim.com/templates" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-table"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Creative Tim</div>
+                                            <div class="resource-link">creative-tim.com</div>
+                                            <div class="resource-description">Free dashboard templates</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://github.com/ColorlibHQ/AdminLTE/releases" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">AdminLTE</div>
+                                            <div class="resource-link">github.com</div>
+                                            <div class="resource-description">Free admin dashboard template</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://colorlib.com/wp/free-dashboard-templates/" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-chart-line"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Colorlib</div>
+                                            <div class="resource-link">colorlib.com</div>
+                                            <div class="resource-description">Popular dashboard templates</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://htmlrev.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-laravel"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">HTMLRev</div>
+                                            <div class="resource-link">htmlrev.com</div>
+                                            <div class="resource-description">Laravel dashboard templates</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Websites Tab -->
+                    <div class="tab-pane fade" id="v-pills-link3" role="tabpanel" aria-labelledby="v-pills-link3-tab">
+                        <h4 class="category-title"><i class="fas fa-globe me-2"></i> Website Templates</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.free-css.com/free-css-templates" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-file-code"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Free CSS</div>
+                                            <div class="resource-link">free-css.com</div>
+                                            <div class="resource-description">356 free website templates</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://themewagon.com/blog/responsive-templates-for-medical-websites/"
+                                    target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-medkit"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">ThemeWagon</div>
+                                            <div class="resource-link">themewagon.com</div>
+                                            <div class="resource-description">25 medical website templates</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://templatesjungle.com/free-medical-website-templates/" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-hospital"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Templates Jungle</div>
+                                            <div class="resource-link">templatesjungle.com</div>
+                                            <div class="resource-description">10 medical website templates</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://templatemo.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-laptop-code"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">TemplateMo</div>
+                                            <div class="resource-link">templatemo.com</div>
+                                            <div class="resource-description">Free HTML/CSS templates</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UI/UX Tab -->
+                    <div class="tab-pane fade" id="v-pills-link4" role="tabpanel" aria-labelledby="v-pills-link4-tab">
+                        <h4 class="category-title"><i class="fas fa-palette me-2"></i> UI/UX Resources</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://xdfile.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-adobe"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">XDFile</div>
+                                            <div class="resource-link">xdfile.com</div>
+                                            <div class="resource-description">Free UI kits for designers</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://helpx.adobe.com/xd/help/access-ui-kits.html#panel-3" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-adobe"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Adobe XD UI Kits</div>
+                                            <div class="resource-link">helpx.adobe.com</div>
+                                            <div class="resource-description">Official Adobe XD UI kits</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.xdguru.com/xd-website-templates/" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-desktop"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">XD Guru</div>
+                                            <div class="resource-link">xdguru.com</div>
+                                            <div class="resource-description">XD website templates</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://coolors.co/palettes/trending" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-palette"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Coolors</div>
+                                            <div class="resource-link">coolors.co</div>
+                                            <div class="resource-description">Color palette generator</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.behance.net/gallery/196590265/Hotel-Booking-Website-Design?tracking_source=search_projects|hotel+design+ui+ux&l=21"
+                                    target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-behance"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Hotel Booking UI</div>
+                                            <div class="resource-link">behance.net</div>
+                                            <div class="resource-description">Reference project for hotel design</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projects Tab -->
+                    <div class="tab-pane fade" id="v-pills-link5" role="tabpanel" aria-labelledby="v-pills-link5-tab">
+                        <h4 class="category-title"><i class="fas fa-project-diagram me-2"></i> Project Resources</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.codingnepalweb.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-code"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Coding Nepal</div>
+                                            <div class="resource-link">codingnepalweb.com</div>
+                                            <div class="resource-description">Web development tutorials</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://1sourcecodr.blogspot.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-blog"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">1 Source Code</div>
+                                            <div class="resource-link">1sourcecodr.blogspot.com</div>
+                                            <div class="resource-description">Programming tutorials and examples</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://projectworlds.in/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-project-diagram"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Project Worlds</div>
+                                            <div class="resource-link">projectworlds.in</div>
+                                            <div class="resource-description">Source code for various projects</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://github.com/Samir-Gamal/Invoices_Project" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Invoices Project</div>
+                                            <div class="resource-link">github.com</div>
+                                            <div class="resource-description">By Samir Gamal</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://github.com/HamzaHassanM/store" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">E-commerce Store</div>
+                                            <div class="resource-link">github.com</div>
+                                            <div class="resource-description">By Hamza HassanM</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://github.com/Samir-Gamal/hospital-management-system" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Hospital System</div>
+                                            <div class="resource-link">github.com</div>
+                                            <div class="resource-description">By Samir Gamal</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://github.com/namumakwembo/Livewire-chat-course" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Live Chat System</div>
+                                            <div class="resource-link">github.com</div>
+                                            <div class="resource-description">Livewire chat application</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="http://github.com/dejwid/mern-blog" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">MERN Blog</div>
+                                            <div class="resource-link">github.com</div>
+                                            <div class="resource-description">Full-stack blog application</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.geeksforgeeks.org/convolutional-neural-network-cnn-in-machine-learning/"
+                                    target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-brain"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">CNN Guide</div>
+                                            <div class="resource-link">geeksforgeeks.org</div>
+                                            <div class="resource-description">Convolutional Neural Networks</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Graduation Tab -->
+                    <div class="tab-pane fade" id="v-pills-link6" role="tabpanel" aria-labelledby="v-pills-link6-tab">
+                        <h4 class="category-title"><i class="fas fa-graduation-cap me-2"></i> Graduation Project
+                            Resources</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://chat.openai.com/share/08d31387-ce8a-422a-a47f-5ea43e5fb397"
+                                    target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-book"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Project Definitions</div>
+                                            <div class="resource-link">chat.openai.com</div>
+                                            <div class="resource-description">AI-generated project documentation</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://altibbi.com/%D9%85%D8%B5%D8%B7%D9%84%D8%AD%D8%A7%D8%AA-%D8%B7%D8%A8%D9%8A%D8%A9/%D9%85%D8%B1%D8%B6-%D8%A7%D9%84%D8%B3%D9%83%D8%B1%D9%8A/%D8%A7%D9%84%D8%B3%D9%83%D8%B1%D9%8A"
+                                    target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-heartbeat"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Medical Reference</div>
+                                            <div class="resource-link">altibbi.com</div>
+                                            <div class="resource-description">Diabetes medical information</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://github.com/emRatib/graduation-project" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Graduation Project</div>
+                                            <div class="resource-link">github.com</div>
+                                            <div class="resource-description">Sample project repository</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://rapidapi.com/collection/medical-api" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-procedures"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Medical APIs</div>
+                                            <div class="resource-link">rapidapi.com</div>
+                                            <div class="resource-description">Collection of healthcare APIs</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Websites Tab -->
+                    <div class="tab-pane fade" id="v-pills-link7" role="tabpanel" aria-labelledby="v-pills-link7-tab">
+                        <h4 class="category-title"><i class="fas fa-tools me-2"></i> Tools & Websites</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://colab.research.google.com/notebook" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-google"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Google Colab</div>
+                                            <div class="resource-link">colab.research.google.com</div>
+                                            <div class="resource-description">Cloud-based Python notebooks</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.kaggle.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-database"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Kaggle</div>
+                                            <div class="resource-link">kaggle.com</div>
+                                            <div class="resource-description">Data science community</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://app.decktopus.com/dashboard" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-file-powerpoint"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Decktopus</div>
+                                            <div class="resource-link">app.decktopus.com</div>
+                                            <div class="resource-description">AI PowerPoint generator</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://slidesgo.com/ai-presentations" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-presentation"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">SlidesGo</div>
+                                            <div class="resource-link">slidesgo.com</div>
+                                            <div class="resource-description">AI PowerPoint templates</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.vecteezy.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-vector-square"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Vecteezy</div>
+                                            <div class="resource-link">vecteezy.com</div>
+                                            <div class="resource-description">Vector graphics and design</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-code"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">W3Schools</div>
+                                            <div class="resource-link">w3schools.com</div>
+                                            <div class="resource-description">Web development tutorials</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.sqltutorial.org/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-database"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">SQL Tutorial</div>
+                                            <div class="resource-link">sqltutorial.org</div>
+                                            <div class="resource-description">Learn SQL programming</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.popai.pro/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-robot"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">PopAI</div>
+                                            <div class="resource-link">popai.pro</div>
+                                            <div class="resource-description">AI-powered tools</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-comment-dots"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Deepseek</div>
+                                            <div class="resource-link">chat.deepseek.com</div>
+                                            <div class="resource-description">AI chat assistant</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://mindpal.space/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-brain"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Mindpal</div>
+                                            <div class="resource-link">mindpal.space</div>
+                                            <div class="resource-description">AI agents platform</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://pictory.ai/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-video"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Pictory</div>
+                                            <div class="resource-link">pictory.ai</div>
+                                            <div class="resource-description">AI video editing</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://app.leonardo.ai/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-image"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Leonardo</div>
+                                            <div class="resource-link">leonardo.ai</div>
+                                            <div class="resource-description">AI image creation</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://lovable.dev/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-laptop-code"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Lovable</div>
+                                            <div class="resource-link">lovable.dev</div>
+                                            <div class="resource-description">Front-end creation</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.youware.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-laptop-code"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Youware</div>
+                                            <div class="resource-link">youware.com</div>
+                                            <div class="resource-description">Front-end creation</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://hailuoai.video/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-video"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Hailuo AI</div>
+                                            <div class="resource-link">hailuoai.video</div>
+                                            <div class="resource-description">AI video creation</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-robot"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">ChatGPT</div>
+                                            <div class="resource-link">chatgpt.com</div>
+                                            <div class="resource-description">AI chat assistant</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-canva"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Canva</div>
+                                            <div class="resource-link">canva.com</div>
+                                            <div class="resource-description">Graphic design platform</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://app.animaker.com/dashboard" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-film"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Animaker</div>
+                                            <div class="resource-link">animaker.com</div>
+                                            <div class="resource-description">Video creation tool</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://ttsmaker.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-microphone-alt"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">TTS Maker</div>
+                                            <div class="resource-link">ttsmaker.com</div>
+                                            <div class="resource-description">Text-to-speech converter</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cyber Security Tab -->
+                    <div class="tab-pane fade" id="v-pills-link9" role="tabpanel" aria-labelledby="v-pills-link9-tab">
+                        <h4 class="category-title"><i class="fas fa-shield-alt me-2"></i> Cyber Security Resources</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.hacksplaining.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">HackSplaining</div>
+                                            <div class="resource-link">hacksplaining.com</div>
+                                            <div class="resource-description">Security training platform</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://tryhackme.com/paths" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-user-secret"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">TryHackMe</div>
+                                            <div class="resource-link">tryhackme.com</div>
+                                            <div class="resource-description">Cybersecurity learning paths</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Laravel Tab -->
+                    <div class="tab-pane fade" id="v-pills-link10" role="tabpanel" aria-labelledby="v-pills-link10-tab">
+                        <h4 class="category-title"><i class="fab fa-laravel me-2"></i> Laravel Resources</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://laravel-livewire.com/docs/2.x/quickstart" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-laravel"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Laravel Livewire</div>
+                                            <div class="resource-link">laravel-livewire.com</div>
+                                            <div class="resource-description">Full-stack framework</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://laravel.com/docs/12.x/readme" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-laravel"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Laravel Docs</div>
+                                            <div class="resource-link">laravel.com</div>
+                                            <div class="resource-description">Official documentation</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DevOps Tab -->
+                    <div class="tab-pane fade" id="v-pills-link11" role="tabpanel" aria-labelledby="v-pills-link11-tab">
+                        <h4 class="category-title"><i class="fas fa-server me-2"></i> DevOps Resources</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://eu-north-1.console.aws.amazon.com/console/home?region=eu-north-1"
+                                    target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-aws"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">AWS Console</div>
+                                            <div class="resource-link">aws.amazon.com</div>
+                                            <div class="resource-description">Free tier account</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="http://github.com/ashmawymidxd" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">GitHub Profile</div>
+                                            <div class="resource-link">github.com</div>
+                                            <div class="resource-description">ashmawymidxd</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://hub.docker.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-docker"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Docker Hub</div>
+                                            <div class="resource-link">hub.docker.com</div>
+                                            <div class="resource-description">Container repository</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://awsacademy.instructure.com/courses/75669?invitation=n2ccTtT4Ij9UmUHaVKdrGdSTcQohzdIPdxkCEOOS"
+                                    target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-aws"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">AWS Academy</div>
+                                            <div class="resource-link">awsacademy.instructure.com</div>
+                                            <div class="resource-description">Cloud training courses</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Freelance Tab -->
+                    <div class="tab-pane fade" id="v-pills-link12" role="tabpanel" aria-labelledby="v-pills-link12-tab">
+                        <h4 class="category-title"><i class="fas fa-user-tie me-2"></i> Freelance Resources</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.redbubble.com/studio/dashboard" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-store"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Redbubble</div>
+                                            <div class="resource-link">redbubble.com</div>
+                                            <div class="resource-description">Print-on-demand platform</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://khamsat.com/user/ahmed_hassan_11" target="_blank"
+                                    rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-handshake"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Khamsat</div>
+                                            <div class="resource-link">khamsat.com</div>
+                                            <div class="resource-description">Freelance marketplace</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://itraxacademy.com/home/course/full-stack-diploma-plus/12"
+                                    target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-graduation-cap"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">ITrax Academy</div>
+                                            <div class="resource-link">itraxacademy.com</div>
+                                            <div class="resource-description">Full-stack diploma</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://mostaql.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-briefcase"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Mostaql</div>
+                                            <div class="resource-link">mostaql.com</div>
+                                            <div class="resource-description">Freelance platform</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- https://codecanyon.net/ -->
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.codecanyon.net/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-code"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">CodeCanyon</div>
+                                            <div class="resource-link">codecanyon.net</div>
+                                            <div class="resource-description">Code marketplace</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.udemy.com/course/learn-devops-docker-kubernetes-jenkins-gitlab/"
+                                    target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-laptop-code"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Udemy DevOps Course</div>
+                                            <div class="resource-link">udemy.com</div>
+                                            <div class="resource-description">Learn DevOps tools</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- https://baaeed.com/remote-jobs -->
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://baaeed.com/remote-jobs" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-briefcase"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Baaeed Remote Jobs</div>
+                                            <div class="resource-link">baaeed.com</div>
+                                            <div class="resource-description">Remote job listings</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://mkan.me/uiux" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-search-dollar"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Jobs Board</div>
+                                            <div class="resource-link">mkan.me</div>
+                                            <div class="resource-description">UI/UX job opportunities</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.behance.net/be5d8e62" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fab fa-behance"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">My Behance</div>
+                                            <div class="resource-link">behance.net</div>
+                                            <div class="resource-description">Design portfolio</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://cjinc.info/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-link"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Cjinc</div>
+                                            <div class="resource-link">cjinc.info</div>
+                                            <div class="resource-description">Freelance resource</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEO Tab -->
+                    <div class="tab-pane fade" id="v-pills-link13" role="tabpanel" aria-labelledby="v-pills-link13-tab">
+                        <h4 class="category-title"><i class="fas fa-search me-2"></i> SEO Resources</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://ahrefs.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-chart-line"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Ahrefs</div>
+                                            <div class="resource-link">ahrefs.com</div>
+                                            <div class="resource-description">SEO analysis tool</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://www.semrush.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-search-plus"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">SEMrush</div>
+                                            <div class="resource-link">semrush.com</div>
+                                            <div class="resource-description">Marketing toolkit</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://moz.com/explorer" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-globe"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Moz Explorer</div>
+                                            <div class="resource-link">moz.com</div>
+                                            <div class="resource-description">SEO research tool</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://keywordtool.io/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">Keyword Tool</div>
+                                            <div class="resource-link">keywordtool.io</div>
+                                            <div class="resource-description">Keyword research</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="https://seranking.com/" target="_blank" rel="noopener noreferrer"
+                                    class="text-decoration-none">
+                                    <div class="resource-card">
+                                        <div class="resource-logo">
+                                            <i class="fas fa-trophy"></i>
+                                        </div>
+                                        <div class="resource-content">
+                                            <div class="resource-title">SE Ranking</div>
+                                            <div class="resource-link">seranking.com</div>
+                                            <div class="resource-description">All-in-one SEO platform</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab content -->
+            </div>
+        </div>
+    </div>
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+</body>
+
+</html>
